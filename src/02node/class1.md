@@ -131,6 +131,8 @@ install(TARGETS
   helloworld
   DESTINATION lib/${PROJECT_NAME})
 ```
+就像我们在写 CMakeLists 时会写 target_link_libraries 来链接依赖库，ROS 里我们用 ament_target_dependencies 一次性引入 ROS2 的依赖。
+
 ## 编译和安装
 回到工作空间根目录，编译功能包：
 ```
@@ -173,7 +175,27 @@ data: Hello, ROS2! 2
 
 **恭喜 🎉 你已经完成了第一个 ROS2 节点！**  
 
-  
+## rqt工具 
+### 为什么使用rqt？
+在使用ROS的过程中，有不少小工具可以帮助我们检查编写的节点。虽然ros2 topic echo可以打印出具体的消息，但是并不直观。所以我们需要一种图形化的方法来看到节点和话题的状态，这就是rqt这个工具的意义。
+### rqt是什么？
+rqt 是 ROS 自带的 图形化工具框架，它就像一个“工具箱”。它的每个功能是一个“小插件”，你可以按需加载。常用的插件有：  
+
+>rqt_graph：查看节点之间的连接关系
+rqt_topic：查看话题的实时数据
+rqt_plot：把数值型数据画成曲线图
+
+### rqt的使用
+运行之前编写的发送节点，另外开启一个终端，输入：
+```
+ros2 run rqt_topic rqt_topic
+```
+可以看到之前发布的`/my_message`话题，在话题前的方框打勾，便可以看到`/my_message`具体内容和频率。  
+如果是自定义消息类型，在使用rqt查看之前，需要先source你的工作空间。
+
+![](./resource/rqt_topic.png)
+
+
 ## 自定义消息类型
 ROS中的topic非常强大，不仅可以传输各种基本数据类型如int、float、string（利用std_msgs库），也可以传输复杂的自定义类型，（如以后会用到的imu数据类型、pointcloud数据类型）。接下来，我们将教会大家如何创建自己的消息类型。  
 
@@ -192,7 +214,7 @@ my_msgs/
 ```
 
 ### 定义消息
-在msg文件夹下创建一个新的.msg文件，例如Sentry.msg，写入
+在/msg文件夹下创建一个新的.msg文件，例如Sentry.msg，写入
 ```
 uint8 id
 int32 hp
@@ -200,7 +222,7 @@ float32 x
 float32 y
 ```
 这就定义了一种新的消息类型my_msgs/msg/Sentry，它包含了四种字段
-
+**注意：.msg 文件必须放在 msg/ 文件夹下，否则编译不会识别。**
 ### 修改package.xml
 在 package.xml 里添加对消息生成工具的依赖：
 ```
@@ -248,8 +270,24 @@ float32 x
 float32 y
 ```
 
+## 优化
+为了告诉电脑编译完成后安装的文件在哪里，每次打开一个新的终端后，我们都要执行以下操作：
+```
+source {你的工作空间}/install/setup.bash
+```
+显然这是一个非常麻烦的事，所以我们可以执行以下操作：
+```
+echo "source {你的工作空间路径}/install/setup.bash" >> ~/.bashrc
+```
+比如说
+```
+echo "source /home/lehan/tutorial_ws/install/setup.bash" >> ~/.bashrc
+```
+以后再启动终端时，就不用再手动刷新环境变量了。
+
 
 ## 作业
 
 1. 你已经掌握了最简单的topic发布者写法，接下来，请你修改之前编写的helloworld节点，使其发送我们刚才新定义的Sentry类型消息，并在命令行中查看。
 2. 查阅rclcpp::Subscription的使用方法，尝试在my_first_package包下再编写一个节点，用于接收刚才发送的自定义消息，并打印到屏幕上。
+3. 运行发布者节点和接收者节点，随后在命令行中输入`ros2 run rqt_graph rqt_graph`，理解节点和话题的连接关系。
