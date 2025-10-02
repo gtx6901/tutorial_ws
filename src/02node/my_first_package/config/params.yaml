@@ -1,0 +1,6 @@
+my_publisher:               
+  ros__parameters:    
+    publish_rate: 50
+    use_sim_time: true
+    robot_radius: 0.25
+    topic_name: "your_message"

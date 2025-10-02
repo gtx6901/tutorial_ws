@@ -10,18 +10,26 @@ public:
     MyPublisher(): Node("my_publisher"),  // 调用基类构造函数，设置节点名为"my_publisher"
                    count_(0)              // 初始化计数器为0
     {
+        this->declare_parameter<int>("publish_rate", 10);
+        int rate = this->get_parameter("publish_rate").as_int();
+
+        this->declare_parameter<std::string>("topic_name", "/default_topic");
+        std::string topic = this->get_parameter("topic_name").as_string();
+
+
+
         // 创建发布者（Publisher）
         // 参数说明：
         // - "my_message": 话题名称
         // - 10: 队列大小（缓存的消息数量）
-        publisher_ = this->create_publisher<std_msgs::msg::String>("my_message", 10);
+        publisher_ = this->create_publisher<std_msgs::msg::String>(topic, 10);
         
         // 创建定时器（Timer），每秒触发一次
         // 参数说明：
         // - std::chrono::seconds(1): 定时器周期为1秒
         // - std::bind(...): 绑定回调函数，当定时器触发时调用timer_callback方法
         timer_ = this->create_wall_timer(
-            std::chrono::seconds(1),
+            std::chrono::milliseconds(1000 / rate),
             std::bind(&MyPublisher::timer_callback, this)
         );
     }
