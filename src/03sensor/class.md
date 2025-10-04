@@ -118,7 +118,7 @@ $$
 在本教程中我们约定 $T_A^B$ 表示把在 B 系表示的点变换到 A 系（即 target=A，source=B）。在调用 API 时，明确 target_frame 与 source_frame 的顺序非常重要。
 
 ##### 2.2 尝试使用TF
-新创建一个C++功能包，在package.xml增加以下depend:  
+新创建一个C++功能包，比如叫`my_tf`，在package.xml增加以下depend:  
 
 ```
 <depend>tf2_ros</depend>
@@ -133,8 +133,8 @@ find_package(geometry_msgs REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 ```
 
-随后新建一个cpp文件，比如叫'my_tf2_broadcaster.cpp'，随后修改Cmakelists，指定可执行文件、引入依赖并声明安装。  
-在cpp文件中加入一下内容：
+随后新建一个cpp文件，比如叫`my_tf2_broadcaster.cpp`，随后修改Cmakelists，指定可执行文件、引入依赖并声明安装。  
+在cpp文件中加入以下内容：
 ```
 #include <rclcpp/rclcpp.hpp>
 #include <tf2_ros/transform_broadcaster.h>
