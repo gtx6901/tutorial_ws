@@ -291,4 +291,4 @@ echo "source /home/lehan/tutorial_ws/install/setup.bash" >> ~/.bashrc
 1. 你已经掌握了最简单的topic发布者写法，接下来，请你修改之前编写的helloworld节点，使其发送我们刚才新定义的Sentry类型消息，并在命令行中查看。
 2. 查阅rclcpp::Subscription的使用方法，尝试在my_first_package包下再编写一个节点，用于接收刚才发送的自定义消息，并打印到屏幕上。
 3. 运行发布者节点和接收者节点，随后在命令行中输入`ros2 run rqt_graph rqt_graph`，理解节点和话题的连接关系。
-4. 查询资料或询问LLM，了解并尝试编写一对使用service和action的节点。
+4. 查询资料或询问你最喜欢的LLM，了解并尝试编写一对使用service和action的节点。
