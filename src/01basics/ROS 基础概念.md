@@ -113,7 +113,10 @@ colcon build结束后，程序还不能马上运行。需要`source install/setu
 作者并非计科专业学生，对ROS的了解也并非很深入。写这个教程的目的在于让此前没有接触过相关方面的新同学尽快了解和上手ROS2。若有错误和疏漏，还请指出。
 
 最后附上一些参考资料：  
-[赵虚左老师的视频教程](https://www.bilibili.com/video/BV1VB4y137ys/)
-[ROS2 Official Documentation](https://docs.ros.org/en/humble/)
+[赵虚左老师的视频教程](https://www.bilibili.com/video/BV1VB4y137ys/)  
+[深北莫 陈佬的导航与仿真开源](https://github.com/SMBU-PolarBear-Robotics-Team/pb2025_sentry_nav)  
+[ROS2 Official Documentation](https://docs.ros.org/en/humble/)  
 [Nav2 Official Documentation](https://docs.nav2.org/)
-[伟大的GPT老师](https://chatgpt.com/)
+[伟大的GPT老师](https://chatgpt.com/)  
+[伟大的开源库与教程Python Robotics](https://github.com/AtsushiSakai/PythonRobotics)  
+
