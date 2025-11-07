@@ -115,8 +115,9 @@ colcon build结束后，程序还不能马上运行。需要`source install/setu
 最后附上一些参考资料：  
 [赵虚左老师的视频教程](https://www.bilibili.com/video/BV1VB4y137ys/)  
 [深北莫 陈佬的导航与仿真开源](https://github.com/SMBU-PolarBear-Robotics-Team/pb2025_sentry_nav)  
+[深北莫 陈佬的算法培训文档](https://flowus.cn/lihanchen/share/176cea35-a0fd-46fd-af06-4fb384ac9784)  
 [ROS2 Official Documentation](https://docs.ros.org/en/humble/)  
-[Nav2 Official Documentation](https://docs.nav2.org/)
+[Nav2 Official Documentation](https://docs.nav2.org/)  
 [伟大的GPT老师](https://chatgpt.com/)  
 [伟大的开源库与教程Python Robotics](https://github.com/AtsushiSakai/PythonRobotics)  
 
